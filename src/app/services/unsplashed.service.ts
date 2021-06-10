@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { UnsplashedRespObj } from "../UnsplashedRespObj"
 
 const httpOptions = {
     headers: new HttpHeaders({
@@ -15,8 +16,8 @@ export class UnsplashedService {
     private apiUrl = 'https://api.unsplash.com/';
     constructor(private http: HttpClient) {}
 
-    searchImages(query: string, page: number = 1): Observable<any> {
+    searchImages(query: string, page: number = 1): Observable<UnsplashedRespObj> {
         const url = `${this.apiUrl}search?query=${query}&page=${page}&per_page=30`;
-        return this.http.get<any>(url, httpOptions);
+        return this.http.get<UnsplashedRespObj>(url, httpOptions)
     }
 }

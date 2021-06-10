@@ -1,6 +1,18 @@
 <div class="gallery" *ngIf="images">
-    <div class="image" *ngFor="let image of images.photos.results">
-        <img src="{{ image.urls.small }}" alt="" />
+    <div class="col">
+        <div class="image" *ngFor="let image of images; let i = index">
+            <img *ngIf="i < images.length / 3" src="{{ image }}" alt="" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="image" *ngFor="let image of images; let i = index">
+            <img *ngIf="i > images.length / 3 && i < 2 * images.length / 3" src="{{ image }}" alt="" />
+        </div>
+    </div>
+    <div class="col">
+        <div class="image" *ngFor="let image of images; let i = index">
+            <img *ngIf="i > 2 * images.length / 3" src="{{ image }}" alt="" />
+        </div>
     </div>
 </div>
 <app-pagination (paginate)="paginate($event)"></app-pagination>

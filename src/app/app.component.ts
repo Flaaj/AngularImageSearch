@@ -7,7 +7,7 @@ import { UnsplashedRespObj } from 'src/app/UnsplashedRespObj';
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-    images?: UnsplashedRespObj;
+    images?: any;
     page: number = 1;
     totalPages: number = 1;
     lastQuery: string = '';
@@ -17,7 +17,9 @@ export class AppComponent implements OnInit {
 
     search(query: string) {
         this.unsplashedService.searchImages(query).subscribe((response) => {
-            this.images = response;
+            this.images = response.photos.results.map(
+                (result) => result.urls.small
+            );
             this.totalPages = response.photos.total_pages;
             this.lastQuery = query;
         });
@@ -33,7 +35,12 @@ export class AppComponent implements OnInit {
         this.unsplashedService
             .searchImages(this.lastQuery, this.page)
             .subscribe((response) => {
-                this.images = response;
+                this.images = [
+                    ...this.images,
+                    ...response.photos.results.map(
+                        (result) => result.urls.small
+                    ),
+                ];
             });
     }
 }

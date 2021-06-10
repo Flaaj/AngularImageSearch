@@ -6,7 +6,7 @@ import { UnsplashedRespObj } from '../../UnsplashedRespObj';
     styleUrls: ['./gallery.component.scss'],
 })
 export class GalleryComponent implements OnInit {
-    @Input() images?: UnsplashedRespObj;
+    @Input() images?: string[];
     @Output() getAnotherPage = new EventEmitter();
 
     constructor() {}
