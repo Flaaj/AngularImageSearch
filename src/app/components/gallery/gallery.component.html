@@ -1,0 +1,6 @@
+<div class="gallery" *ngIf="images">
+    <div class="image" *ngFor="let image of images.photos.results">
+        <img src="{{ image.urls.small }}" alt="" />
+    </div>
+</div>
+<app-pagination (paginate)="paginate($event)"></app-pagination>

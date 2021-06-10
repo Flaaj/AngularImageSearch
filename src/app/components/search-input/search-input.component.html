@@ -1,0 +1,15 @@
+<div class="search-input">
+    <h2>Welcome human!</h2>
+    <p>please, enter the phrase to find images you want:</p>
+    <form class="search-input__form" (submit)="onSubmit()">
+        <input
+            type="text"
+            name="query"
+            id="query"
+            placeholder="Enter Search Phrase Here..."
+            autocomplete="off"
+            [(ngModel)]="query"
+        />
+        <button>Search</button>
+    </form>
+</div>
