@@ -4,6 +4,8 @@ export interface UnsplashedRespObj {
     photos: {
         total_pages: number;
         results: {
+            width: number,
+            height: number,
             urls: {
                 full: string;
                 raw: string;

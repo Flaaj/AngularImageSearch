@@ -17,7 +17,7 @@ export class UnsplashedService {
     constructor(private http: HttpClient) {}
 
     searchImages(query: string, page: number = 1): Observable<UnsplashedRespObj> {
-        const url = `${this.apiUrl}search?query=${query}&page=${page}&per_page=30`;
+        const url = `${this.apiUrl}search?query=${query}&page=${page}&per_page=12`;
         return this.http.get<UnsplashedRespObj>(url, httpOptions)
     }
 }
