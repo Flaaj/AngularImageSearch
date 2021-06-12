@@ -1,17 +1,17 @@
 <div class="gallery" *ngIf="images">
     <div class="col">
-        <div class="image" *ngFor="let image of images; let i = index">
-            <img *ngIf="i < images.length / 3" src="{{ image }}" alt="" />
+        <div class="image" *ngFor="let image of images[0]">
+            <img src="{{ image.url }}" alt="" />
         </div>
     </div>
     <div class="col">
-        <div class="image" *ngFor="let image of images; let i = index">
-            <img *ngIf="i >= images.length / 3 && i < 2 * images.length / 3" src="{{ image }}" alt="" />
+        <div class="image" *ngFor="let image of images[1]">
+            <img src="{{ image.url }}" alt="" />
         </div>
     </div>
     <div class="col">
-        <div class="image" *ngFor="let image of images; let i = index">
-            <img *ngIf="i >= 2 * images.length / 3" src="{{ image }}" alt="" />
+        <div class="image" *ngFor="let image of images[2]">
+            <img src="{{ image.url }}" alt="" />
         </div>
     </div>
 </div>

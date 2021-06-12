@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UnsplashedService } from 'src/app/services/unsplashed.service';
-import { Store, select } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { appendImageList, resetImageList } from './state/images.actions';
-import { getImages } from './state/images.selectors';
-import { AppState } from './state/app.state';
-import { map, filter } from 'rxjs/operators';
-import { resourceLimits } from 'worker_threads';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -19,20 +15,19 @@ export class AppComponent implements OnInit {
     constructor(
         private unsplashedService: UnsplashedService,
         private store: Store
-    ) {}
+    ) { }
 
-    ngOnInit(): void {}
+    ngOnInit(): void { }
 
     search(query: string) {
         this.unsplashedService.searchImages(query).subscribe((response) => {
             const newImages = response.photos.results.map(
-                (result) => result.urls.small
+                (result) => ({ url: result.urls.small, proportions: result.height / result.width })
             );
             this.store.dispatch(resetImageList({ images: newImages }));
 
             this.totalPages = response.photos.total_pages;
             this.lastQuery = query;
-            console.log(response);
         });
     }
 
@@ -47,9 +42,11 @@ export class AppComponent implements OnInit {
             .searchImages(this.lastQuery, this.page)
             .subscribe((response) => {
                 const newImages = response.photos.results.map(
-                    (result) => ([result.urls.small, result.height / result.width]
-                );
-                this.store.dispatch(appendImageList({ images: newImages }));
-            });
+                    (result) => ({ url: result.urls.small, proportions: result.height / result.width })
+                )
+                this.store.dispatch(appendImageList({ images: newImages }))
+            })
+
+
     }
 }
