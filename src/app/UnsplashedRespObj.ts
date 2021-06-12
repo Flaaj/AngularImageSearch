@@ -4,8 +4,8 @@ export interface UnsplashedRespObj {
     photos: {
         total_pages: number;
         results: {
-            width: number,
-            height: number,
+            width: number;
+            height: number;
             urls: {
                 full: string;
                 raw: string;
@@ -15,6 +15,6 @@ export interface UnsplashedRespObj {
             };
         }[];
     };
-    related_searches: Object[];
+    related_searches: { title: string }[];
     users: Object;
 }

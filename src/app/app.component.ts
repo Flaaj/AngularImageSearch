@@ -11,27 +11,32 @@ export class AppComponent implements OnInit {
     page: number = 1;
     totalPages: number = 1;
     lastQuery: string = '';
+    relatedSearches: { title: string }[] = [];
 
     constructor(
         private unsplashedService: UnsplashedService,
         private store: Store
-    ) { }
+    ) {}
 
-    ngOnInit(): void { }
+    ngOnInit(): void {}
 
     search(query: string) {
         this.unsplashedService.searchImages(query).subscribe((response) => {
-            const newImages = response.photos.results.map(
-                (result) => ({ url: result.urls.small, proportions: result.height / result.width })
-            );
+            const newImages = response.photos.results.map((result) => ({
+                url: result.urls.small,
+                proportions: result.height / result.width,
+            }));
             this.store.dispatch(resetImageList({ images: newImages }));
 
             this.totalPages = response.photos.total_pages;
             this.lastQuery = query;
+            this.relatedSearches = response.related_searches;
+
+            console.log(response);
         });
     }
 
-    getAnotherPage(up: boolean = true) {
+    showMore(up: boolean = true) {
         if (!up && this.page == 1) return;
         if (up && this.page == this.totalPages) return;
 
@@ -41,12 +46,15 @@ export class AppComponent implements OnInit {
         this.unsplashedService
             .searchImages(this.lastQuery, this.page)
             .subscribe((response) => {
-                const newImages = response.photos.results.map(
-                    (image) => ({ url: image.urls.small, proportions: image.height / image.width })
-                )
-                this.store.dispatch(appendImageList({ images: newImages }))
-            })
+                const newImages = response.photos.results.map((image) => ({
+                    url: image.urls.small,
+                    proportions: image.height / image.width,
+                }));
+                this.store.dispatch(appendImageList({ images: newImages }));
+            });
+    }
 
-
+    searchRelated(related: string) {
+        this.search(related);
     }
 }

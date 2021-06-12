@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { getImages } from '../../state/images.selectors';
-import { AppState } from "../../state/app.state"
 @Component({
     selector: 'app-gallery',
     templateUrl: './gallery.component.html',
@@ -9,6 +8,7 @@ import { AppState } from "../../state/app.state"
 })
 export class GalleryComponent implements OnInit {
     images?: { url: string, proportions: number }[][];
+    @Input() lastQuery?: string;
     @Output() getAnotherPage = new EventEmitter();
 
     constructor(private store: Store) { }
@@ -19,9 +19,5 @@ export class GalleryComponent implements OnInit {
             .subscribe((data) => {
                 this.images = data
             });
-    }
-
-    paginate(up: boolean): void {
-        this.getAnotherPage.emit(up);
     }
 }

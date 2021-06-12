@@ -1,2 +1,5 @@
 <app-search-input (search)="search($event)"></app-search-input>
-<app-gallery (getAnotherPage)="getAnotherPage($event)"></app-gallery>
+<app-related-searches *ngIf="relatedSearches.length > 0" [relatedSearches]="relatedSearches" (searchRelated)="searchRelated($event)"></app-related-searches>
+<app-gallery *ngIf="lastQuery" [lastQuery]="lastQuery"></app-gallery>
+<app-pagination *ngIf="this.page != this.totalPages" (showMore)="showMore($event)"></app-pagination>
+

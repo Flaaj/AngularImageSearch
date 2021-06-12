@@ -1,3 +1,4 @@
+<div class="results-for">Showing results for: <span>"{{lastQuery}}"</span></div>
 <div class="gallery" *ngIf="images">
     <div class="col">
         <div class="image" *ngFor="let image of images[0]">
@@ -15,4 +16,3 @@
         </div>
     </div>
 </div>
-<app-pagination (paginate)="paginate($event)"></app-pagination>

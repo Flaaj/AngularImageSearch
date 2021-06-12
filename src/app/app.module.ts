@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { SearchInputComponent } from './components/search-input/search-input.component';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { RelatedSearchesComponent } from './components/related-searches/related-searches.component';
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
         SearchInputComponent,
         GalleryComponent,
         PaginationComponent,
+        RelatedSearchesComponent,
     ],
     imports: [
         BrowserModule,

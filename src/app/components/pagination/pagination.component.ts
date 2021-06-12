@@ -6,16 +6,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./pagination.component.scss'],
 })
 export class PaginationComponent implements OnInit {
-    @Output() paginate = new EventEmitter();
+    @Output() showMore = new EventEmitter();
 
     constructor() {}
 
     ngOnInit(): void {}
 
-    paginateUp(): void {
-        this.paginate.emit(true);
-    }
-    paginateDown(): void {
-        this.paginate.emit(false);
+    onShowMore(): void {
+        this.showMore.emit(true);
     }
 }
