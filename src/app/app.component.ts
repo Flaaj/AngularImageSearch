@@ -42,7 +42,7 @@ export class AppComponent implements OnInit {
             .searchImages(this.lastQuery, this.page)
             .subscribe((response) => {
                 const newImages = response.photos.results.map(
-                    (result) => ({ url: result.urls.small, proportions: result.height / result.width })
+                    (image) => ({ url: image.urls.small, proportions: image.height / image.width })
                 )
                 this.store.dispatch(appendImageList({ images: newImages }))
             })
