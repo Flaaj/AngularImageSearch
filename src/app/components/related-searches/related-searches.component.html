@@ -1,9 +1,11 @@
 <div class="relatedSearches">
-    <h3 class="relatedSearches__heading">
-        related searches:
-    </h3>
+    <h3 class="relatedSearches__heading">related searches:</h3>
     <div class="relatedSearches__list">
-        <a *ngFor="let related of relatedSearches" (click)="onSearchRelated(related.title)">{{related.title}}</a>
-
+        <a
+            *ngFor="let related of relatedSearches"
+            (click)="onSearchRelated(related.title)"
+        >
+            {{ related.title }}
+        </a>
     </div>
 </div>

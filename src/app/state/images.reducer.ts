@@ -11,9 +11,9 @@ export const initialState: AppState = {
 export const imagesReducer = createReducer(
     initialState,
     on(appendImageList, (state, { images }) => {
-        const column1 = [...state.column1];
-        const column2 = [...state.column2];
-        const column3 = [...state.column3];
+        const column1: { url: string, proportions: number }[] = [...state.column1];
+        const column2: { url: string, proportions: number }[] = [...state.column2];
+        const column3: { url: string, proportions: number }[] = [...state.column3];
         let column1Height: number = state.column1Height;
         let column2Height: number = state.column2Height;
         let column3Height: number = state.column3Height;
